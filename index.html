@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	<head>
+		<title>My ROS Query Picker</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+		<link rel="import" href="bower_components/ros-websocket/ros-websocket.html"/>
+		<link rel="import" href="bower_components/ros-topic/ros-topic.html"/>
+		<link rel="import" href="bower_components/polymer/lib/elements/dom-bind.html"/>
+		<link rel="stylesheet" type="text/css" href="bower_components/chosen/chosen.min.css">
+		<script type="text/javascript" src="bower_components/chosen/chosen.jquery.min.js"></script>
+		<style type="text/css">
+			html, body{
+				height: 100%;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<dom-bind id="my-app">
+			<template is="dom-bind">
+				<ros-websocket auto id="websocket" ros="{{ros}}" url="{{url}}"></ros-websocket>
+				<ros-topic id="topic" topic="/hello_world" ros="{{ros}}" msg-type="std_msgs/String"></ros-topic>
+				<button id="pub-btn">Publish Msg</button> 
+
+				<script type="text/javascript">
+					$(function(){
+
+						$('#pub-btn').click(function(){
+							//var msg = new ROSLIB.Message({data: 'Hello world'});
+							var myapp = document.querySelector('#my-app');
+							var selected = $('#myoptions1').chosen().val();
+							$.each( selected, function(index, value){
+								console.log(value);
+								myapp.$.topic.publish({data: value});
+							});
+							console.log($('#myoptions1').chosen().val());
+
+						});
+					});
+				</script>
+			</template>
+		</dom-bind>
+
+		<!-- multiple dropdown -->
+		<select id="myoptions1" multiple="true" style="width:400px;">
+			<option>000</option>
+			<option>aaa</option>
+			<option>bbb</option>
+			<option>ccc</option>
+			<option>ddd</option>
+		</select>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#myoptions1').chosen();
+				console.log($('#myoptions1').chosen().val());
+				
+			});
+		</script>
+
+	</body>
+</html>

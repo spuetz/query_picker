@@ -1,0 +1,32 @@
+{
+  "name": "query_picker",
+  "authors": [
+    "Sebastian Pütz <spuetz@uos.de>"
+  ],
+  "description": "Selecting information for a task query",
+  "main": "query_picker",
+  "keywords": [
+    "query",
+    "ros",
+    "picker"
+  ],
+  "license": "BSD",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ros-topic": "jstnhuang/ros-topic#^1.0.0",
+    "ros-action-client": "jstnhuang/ros-action-client#^1.0.0",
+    "ros-service": "jstnhuang/ros-service#^2.0.1",
+    "ros-websocket": "jstnhuang/ros-websocket#^3.0.2",
+    "ros-rviz": "jstnhuang/ros-rviz#^3.0.4",
+    "chosen": "^1.8.3",
+    "jquery": "^3.3.1"
+  }
+}
